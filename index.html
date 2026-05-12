@@ -44,6 +44,12 @@
 
   <div id="cart-alert" class="alert alert-success d-none mb-0 cart-alert" role="alert" aria-live="polite"></div>
 
+  <button class="cart-launcher d-lg-none" id="cart-launcher" type="button" aria-label="Abrir carrito">
+    <i class="fa-solid fa-bag-shopping"></i>
+    <span>Carrito</span>
+    <strong id="cart-launcher-count">0</strong>
+  </button>
+
   <main class="container-xxl main-wrap">
     <section class="hero-shell mb-4">
       <div class="row g-4 align-items-stretch">
@@ -116,7 +122,12 @@
       <article class="cart-panel cart-sidebar-card">
         <div class="cart-sidebar-head">
           <p class="eyebrow mb-1"><i class="fa-solid fa-cart-shopping"></i> Carrito de compras</p>
-          <h2 class="mb-0">Tu carrito</h2>
+          <div class="d-flex align-items-center justify-content-between gap-2">
+            <h2 class="mb-0">Tu carrito</h2>
+            <button class="cart-close d-lg-none" id="cart-close" type="button" aria-label="Cerrar carrito">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
         </div>
         <div class="cart-sidebar-scroll">
           <ul id="cart-items-page" class="cart-items mb-0">

@@ -297,6 +297,21 @@ section#contacto,
   z-index: 70;
 }
 
+.cart-launcher {
+  display: none;
+}
+
+.cart-close {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--white);
+  color: #111111;
+  display: grid;
+  place-items: center;
+}
+
 .cart-sidebar-card {
   height: 100%;
   display: flex;
@@ -603,6 +618,40 @@ section#contacto,
     padding-right: 0;
   }
 
+  .cart-launcher {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index: 1065;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 14px;
+    background: #2a69c8;
+    color: #ffffff;
+    box-shadow: 0 18px 40px rgba(42, 105, 200, 0.28);
+    font-weight: 800;
+  }
+
+  body.cart-open .cart-launcher {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  .cart-launcher strong {
+    min-width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #111111;
+    display: grid;
+    place-items: center;
+    font-size: 0.85rem;
+  }
+
   .cart-sidebar {
     position: fixed;
     left: 14px;
@@ -610,20 +659,33 @@ section#contacto,
     bottom: 14px;
     top: auto;
     width: auto;
-    height: min(62vh, 520px);
-    max-height: calc(100vh - 172px);
+    height: auto;
+    max-height: min(68vh, 520px);
     margin: 0;
     z-index: 1060;
+    transform: translateY(calc(100% + 24px));
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.24s ease, opacity 0.24s ease;
+  }
+
+  body.cart-open .cart-sidebar {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .cart-sidebar-card {
     height: 100%;
+    max-height: inherit;
     border-radius: 24px;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .cart-sidebar-scroll {
-    overflow: auto;
+    overflow: visible;
+    max-height: none;
   }
 
   .cart-sidebar-head {
@@ -634,12 +696,16 @@ section#contacto,
     font-size: 1.45rem;
   }
 
+  .cart-sidebar-head .d-flex {
+    align-items: center;
+  }
+
   .cart-sidebar-footer {
-    padding-bottom: 4px;
+    padding-bottom: 12px;
   }
 
   .main-wrap {
-    padding-bottom: 560px;
+    padding-bottom: 250px;
   }
 
   .hero-panel h1 {

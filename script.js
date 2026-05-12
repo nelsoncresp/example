@@ -7,6 +7,9 @@ const cartBadge = document.getElementById('cart-badge');
 const cartSidebarEl = document.getElementById('carrito');
 const paymentArtifactEl = document.getElementById('payment-artifact');
 const cartAlertEl = document.getElementById('cart-alert');
+const cartLauncherEl = document.getElementById('cart-launcher');
+const cartLauncherCountEl = document.getElementById('cart-launcher-count');
+const cartCloseEl = document.getElementById('cart-close');
 const mainNav = document.getElementById('main-nav');
 const paymentInputs = document.querySelectorAll('input[name="payment"]');
 let cartAlertTimeoutId = null;
@@ -154,7 +157,11 @@ const showCartAlert = (message, variant = 'success') => {
 };
 
 const updateCartView = () => {
-  cartCountEl.textContent = getCartCount();
+  const cartCount = getCartCount();
+  cartCountEl.textContent = cartCount;
+  if (cartLauncherCountEl) {
+    cartLauncherCountEl.textContent = cartCount;
+  }
 
   if (cart.length === 0) {
     const emptyMarkup = '<li class="empty-state">Todavía no agregas servicios.</li>';
@@ -280,6 +287,27 @@ if (cartBadge) {
     }
   });
 }
+
+if (cartLauncherEl) {
+  cartLauncherEl.addEventListener('click', () => {
+    document.body.classList.add('cart-open');
+    if (cartSidebarEl) {
+      cartSidebarEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  });
+}
+
+if (cartCloseEl) {
+  cartCloseEl.addEventListener('click', () => {
+    document.body.classList.remove('cart-open');
+  });
+}
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 992) {
+    document.body.classList.remove('cart-open');
+  }
+});
 
 if (mainNav) {
   mainNav.addEventListener('click', (event) => {
