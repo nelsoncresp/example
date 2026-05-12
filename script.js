@@ -32,6 +32,14 @@ const saveCart = () => {
   localStorage.setItem('sendaMentalCart', JSON.stringify(cart));
 };
 
+const openCartSidebar = () => {
+  document.body.classList.add('cart-open');
+};
+
+const closeCartSidebar = () => {
+  document.body.classList.remove('cart-open');
+};
+
 const getCartCount = () => cart.reduce((sum, item) => sum + item.qty, 0);
 
 const getCartTotal = () => cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -217,6 +225,7 @@ document.addEventListener('click', (event) => {
     }
 
     updateCartView();
+    openCartSidebar();
     if (checkoutMessage) {
       checkoutMessage.textContent = `${name} fue agregado al carrito.`;
     }
@@ -282,15 +291,20 @@ paymentInputs.forEach((input) => {
 
 if (cartBadge) {
   cartBadge.addEventListener('click', () => {
-    if (cartSidebarEl) {
-      cartSidebarEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (document.body.classList.contains('cart-open')) {
+      closeCartSidebar();
+    } else {
+      openCartSidebar();
+      if (cartSidebarEl) {
+        cartSidebarEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   });
 }
 
 if (cartLauncherEl) {
   cartLauncherEl.addEventListener('click', () => {
-    document.body.classList.add('cart-open');
+    openCartSidebar();
     if (cartSidebarEl) {
       cartSidebarEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
@@ -299,13 +313,13 @@ if (cartLauncherEl) {
 
 if (cartCloseEl) {
   cartCloseEl.addEventListener('click', () => {
-    document.body.classList.remove('cart-open');
+    closeCartSidebar();
   });
 }
 
 window.addEventListener('resize', () => {
   if (window.innerWidth >= 992) {
-    document.body.classList.remove('cart-open');
+    closeCartSidebar();
   }
 });
 
