@@ -18,7 +18,8 @@ const cart = JSON.parse(localStorage.getItem('sendaMentalCart') || '[]')
   .map((item) => ({
     name: item.name,
     price: Number(item.price) || 0,
-    qty: Number(item.qty) > 0 ? Number(item.qty) : 1
+    qty: Number(item.qty) > 0 ? Number(item.qty) : 1,
+    psychologist: item.psychologist || ''
   }))
   .filter((item) => item.name && item.price > 0);
 
@@ -145,7 +146,9 @@ const updatePaymentArtifact = () => {
 };
 
 const showCartAlert = (title, message, variant = 'success') => {
+  console.log('showCartAlert called:', { title, message, variant });
   if (!cartAlertEl) {
+    console.error('cartAlertEl not found');
     return;
   }
 
@@ -156,7 +159,7 @@ const showCartAlert = (title, message, variant = 'success') => {
 
   const iconColor = variant === 'success' ? '#22C55E' : '#F59E0B';
   
-  cartAlertEl.className = `d-flex align-items-start p-3 rounded border bg-white shadow-lg cart-alert-v2`;
+  cartAlertEl.className = `d-flex align-items-start p-3 rounded border bg-white shadow-lg cart-alert-v2 cart-alert`;
   cartAlertEl.innerHTML = `
     <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-3 mt-1 flex-shrink-0">
         <path d="M16.5 8.31V9a7.5 7.5 0 1 1-4.447-6.855M16.5 3 9 10.508l-2.25-2.25" stroke="${iconColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -290,48 +293,50 @@ document.addEventListener('click', (event) => {
 
   // Cerrar carrito al hacer clic fuera
   if (document.body.classList.contains('cart-open')) {
-    const isClickInsideSidebar = cartSidebarEl.contains(event.target);
+    const isClickInsideSidebar = cartSidebarEl && cartSidebarEl.contains(event.target);
+    const isClickOnAlert = cartAlertEl && cartAlertEl.contains(event.target);
     const isClickOnToggle = event.target.closest('#cart-badge') || 
                             event.target.closest('#cart-launcher') || 
                             event.target.closest('.add-to-cart');
     
-    if (!isClickInsideSidebar && !isClickOnToggle) {
+    if (!isClickInsideSidebar && !isClickOnToggle && !isClickOnAlert) {
       closeCartSidebar();
     }
   }
 });
 
 checkoutBtn.addEventListener('click', () => {
+  console.log('Checkout clicked. Cart size:', cart.length);
   if (cart.length === 0) {
-    const emptyMessage = 'Agrega al menos un servicio antes de finalizar la compra.';
-    if (checkoutMessage) {
-      checkoutMessage.textContent = emptyMessage;
-    }
-    showCartAlert('Carrito Vacío', emptyMessage, 'warning');
+    showCartAlert('Carrito Vacío', 'Agrega al menos un servicio antes de finalizar la compra.', 'warning');
     return;
   }
 
-  const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+  const selectedPaymentEl = document.querySelector('input[name="payment"]:checked');
+  const selectedPayment = selectedPaymentEl ? selectedPaymentEl.value : 'PSE';
+  console.log('Payment method:', selectedPayment);
   
   const pendingPsychologist = cart.some(item => !item.psychologist);
   if (pendingPsychologist) {
+    console.log('Psychologist selection pending');
     showCartAlert('Faltan datos', 'Por favor elige una psicóloga para todos los servicios.', 'warning');
     return;
   }
 
   const total = getCartTotal();
-  const confirmationMessage = `Compra confirmada por ${formatCOP(total)} con ${selectedPayment}.`;
-  if (checkoutMessage) {
-    checkoutMessage.textContent = confirmationMessage;
-  }
+  console.log('Processing checkout for total:', total);
   showCartAlert('¡Pago Exitoso!', 'Tu cita ha sido agendada. Pronto te contactaremos.', 'success');
-  cart.length = 0;
+  
+  cart.splice(0, cart.length);
+  saveCart();
+  
   paymentInputs.forEach((input) => {
-    if (input.value === 'PSE') {
-      input.checked = true;
-    }
+    if (input.value === 'PSE') input.checked = true;
   });
+
   updateCartView();
+  closeCartSidebar();
+  console.log('Checkout flow complete. Cart size:', cart.length);
 });
 
 paymentInputs.forEach((input) => {
