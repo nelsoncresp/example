@@ -159,7 +159,7 @@ const showCartAlert = (title, message, variant = 'success') => {
 
   const iconColor = variant === 'success' ? '#22C55E' : '#F59E0B';
   
-  cartAlertEl.className = `d-flex align-items-start p-3 rounded border bg-white shadow-lg cart-alert-v2 cart-alert`;
+  cartAlertEl.className = `d-flex align-items-start p-3 rounded border bg-white shadow-lg cart-alert-v2 cart-alert animate__animated animate__fadeInRight`;
   cartAlertEl.innerHTML = `
     <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-3 mt-1 flex-shrink-0">
         <path d="M16.5 8.31V9a7.5 7.5 0 1 1-4.447-6.855M16.5 3 9 10.508l-2.25-2.25" stroke="${iconColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -168,7 +168,7 @@ const showCartAlert = (title, message, variant = 'success') => {
         <h3 class="h6 text-dark fw-bold mb-1" style="font-family: 'Poppins', sans-serif;">${title}</h3>
         <p class="text-secondary small mb-0" style="font-family: 'Poppins', sans-serif; line-height: 1.4;">${message}</p>
     </div>
-    <button type="button" aria-label="close" class="ms-auto border-0 bg-transparent p-1 text-secondary opacity-50 hover-opacity-100" onclick="this.parentElement.classList.add('d-none')" style="line-height: 0;">
+    <button type="button" aria-label="close" class="ms-auto border-0 bg-transparent p-1 text-secondary opacity-50 hover-opacity-100" onclick="this.closest('.cart-alert').classList.add('animate__fadeOutRight')" style="line-height: 0;">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect y="12.532" width="17.498" height="2.1" rx="1.05" transform="rotate(-45.74 0 12.532)" fill="currentColor"/>
             <rect x="12.531" y="13.914" width="17.498" height="2.1" rx="1.05" transform="rotate(-135.74 12.531 13.914)" fill="currentColor"/>
@@ -179,7 +179,11 @@ const showCartAlert = (title, message, variant = 'success') => {
   cartAlertEl.classList.remove('d-none');
   
   cartAlertTimeoutId = setTimeout(() => {
-    cartAlertEl.classList.add('d-none');
+    cartAlertEl.classList.add('animate__fadeOutRight');
+    setTimeout(() => {
+      cartAlertEl.classList.add('d-none');
+      cartAlertEl.classList.remove('animate__fadeOutRight');
+    }, 1000);
     cartAlertTimeoutId = null;
   }, 6000);
 };
@@ -396,3 +400,21 @@ if (mainNav) {
 
 updateCartView();
 updatePaymentArtifact();
+
+const initScrollAnimations = () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const animation = entry.target.dataset.animation || 'animate__fadeIn';
+        entry.target.classList.add('animate__animated', animation);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach((el) => {
+    observer.observe(el);
+  });
+};
+
+initScrollAnimations();
