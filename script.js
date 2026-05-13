@@ -144,7 +144,7 @@ const updatePaymentArtifact = () => {
   `;
 };
 
-const showCartAlert = (message, variant = 'success') => {
+const showCartAlert = (title, message, variant = 'success') => {
   if (!cartAlertEl) {
     return;
   }
@@ -154,14 +154,31 @@ const showCartAlert = (message, variant = 'success') => {
     cartAlertTimeoutId = null;
   }
 
-  cartAlertEl.className = `alert alert-${variant} mb-0 cart-alert`;
-  cartAlertEl.textContent = message;
+  const iconColor = variant === 'success' ? '#22C55E' : '#F59E0B';
+  
+  cartAlertEl.className = `d-flex align-items-start p-3 rounded border bg-white shadow-lg cart-alert-v2`;
+  cartAlertEl.innerHTML = `
+    <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-3 mt-1 flex-shrink-0">
+        <path d="M16.5 8.31V9a7.5 7.5 0 1 1-4.447-6.855M16.5 3 9 10.508l-2.25-2.25" stroke="${iconColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="me-3 flex-grow-1">
+        <h3 class="h6 text-dark fw-bold mb-1" style="font-family: 'Poppins', sans-serif;">${title}</h3>
+        <p class="text-secondary small mb-0" style="font-family: 'Poppins', sans-serif; line-height: 1.4;">${message}</p>
+    </div>
+    <button type="button" aria-label="close" class="ms-auto border-0 bg-transparent p-1 text-secondary opacity-50 hover-opacity-100" onclick="this.parentElement.classList.add('d-none')" style="line-height: 0;">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect y="12.532" width="17.498" height="2.1" rx="1.05" transform="rotate(-45.74 0 12.532)" fill="currentColor"/>
+            <rect x="12.531" y="13.914" width="17.498" height="2.1" rx="1.05" transform="rotate(-135.74 12.531 13.914)" fill="currentColor"/>
+        </svg>
+    </button>
+  `;
+  
   cartAlertEl.classList.remove('d-none');
-  cartAlertEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  
   cartAlertTimeoutId = setTimeout(() => {
     cartAlertEl.classList.add('d-none');
     cartAlertTimeoutId = null;
-  }, 4000);
+  }, 6000);
 };
 
 const updateCartView = () => {
@@ -186,16 +203,26 @@ const updateCartView = () => {
 
   const markup = cart
     .map((item, index) => `
-      <li class="cart-item">
-        <div class="cart-line">
-          <span>${item.name}</span>
-          <div class="qty-controls">
+      <li class="cart-item py-3">
+        <div class="cart-line align-items-start">
+          <div class="flex-grow-1">
+            <span class="d-block fw-bold mb-1">${item.name}</span>
+            <select class="form-select form-select-sm cart-psychologist-select" data-index="${index}" style="font-size: 0.75rem;">
+              <option value="" ${!item.psychologist ? 'selected' : ''} disabled>Seleccionar profesional</option>
+              <option value="Dra. Valentina Rojas Serrano" ${item.psychologist === 'Dra. Valentina Rojas Serrano' ? 'selected' : ''}>Dra. Valentina Rojas Serrano</option>
+              <option value="Dra. Mariana Castano Beltran" ${item.psychologist === 'Dra. Mariana Castano Beltran' ? 'selected' : ''}>Dra. Mariana Castano Beltran</option>
+              <option value="Dra. Paula" ${item.psychologist === 'Dra. Paula' ? 'selected' : ''}>Dra. Paula</option>
+            </select>
+          </div>
+          <div class="qty-controls ms-2">
             <button class="qty-btn" data-action="decrease" data-index="${index}" type="button">-</button>
             <span class="qty-value">${item.qty}</span>
             <button class="qty-btn" data-action="increase" data-index="${index}" type="button">+</button>
           </div>
         </div>
-        <strong>${formatCOP(item.price * item.qty)}</strong>
+        <div class="text-end mt-2">
+          <strong>${formatCOP(item.price * item.qty)}</strong>
+        </div>
       </li>
     `)
     .join('');
@@ -221,14 +248,12 @@ document.addEventListener('click', (event) => {
     if (existing) {
       existing.qty += 1;
     } else {
-      cart.push({ name, price, qty: 1 });
+      cart.push({ name, price, qty: 1, psychologist: '' });
     }
 
     updateCartView();
     openCartSidebar();
-    if (checkoutMessage) {
-      checkoutMessage.textContent = `${name} fue agregado al carrito.`;
-    }
+    showCartAlert('Servicio Agregado', `${name} está en tu carrito. Por favor elige tu profesional.`);
     return;
   }
 
@@ -255,6 +280,25 @@ document.addEventListener('click', (event) => {
 
     updateCartView();
   }
+
+  const psychoSelect = event.target.closest('.cart-psychologist-select');
+  if (psychoSelect) {
+    const index = Number(psychoSelect.dataset.index);
+    cart[index].psychologist = psychoSelect.value;
+    saveCart();
+  }
+
+  // Cerrar carrito al hacer clic fuera
+  if (document.body.classList.contains('cart-open')) {
+    const isClickInsideSidebar = cartSidebarEl.contains(event.target);
+    const isClickOnToggle = event.target.closest('#cart-badge') || 
+                            event.target.closest('#cart-launcher') || 
+                            event.target.closest('.add-to-cart');
+    
+    if (!isClickInsideSidebar && !isClickOnToggle) {
+      closeCartSidebar();
+    }
+  }
 });
 
 checkoutBtn.addEventListener('click', () => {
@@ -263,17 +307,24 @@ checkoutBtn.addEventListener('click', () => {
     if (checkoutMessage) {
       checkoutMessage.textContent = emptyMessage;
     }
-    showCartAlert(emptyMessage, 'warning');
+    showCartAlert('Carrito Vacío', emptyMessage, 'warning');
     return;
   }
 
   const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+  
+  const pendingPsychologist = cart.some(item => !item.psychologist);
+  if (pendingPsychologist) {
+    showCartAlert('Faltan datos', 'Por favor elige una psicóloga para todos los servicios.', 'warning');
+    return;
+  }
+
   const total = getCartTotal();
   const confirmationMessage = `Compra confirmada por ${formatCOP(total)} con ${selectedPayment}.`;
   if (checkoutMessage) {
     checkoutMessage.textContent = confirmationMessage;
   }
-  showCartAlert(confirmationMessage, 'success');
+  showCartAlert('¡Pago Exitoso!', 'Tu cita ha sido agendada. Pronto te contactaremos.', 'success');
   cart.length = 0;
   paymentInputs.forEach((input) => {
     if (input.value === 'PSE') {
