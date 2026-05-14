@@ -501,21 +501,31 @@ paymentInputs.forEach((input) => {
 
 // SPA navigation logic using showView() handles all view switching now.
 
-if (mainNav) {
-  mainNav.addEventListener('click', (event) => {
-    const isLink = event.target.tagName === 'A' || event.target.closest('a');
-    if (!isLink) {
-      return;
-    }
+// Cerrar menú móvil al hacer clic fuera o en un enlace
+document.addEventListener('click', (event) => {
+  if (!mainNav) return;
+  
+  const isNavbar = event.target.closest('.navbar');
+  const isCollapseOpen = mainNav.classList.contains('show');
+  const isCollapsing = mainNav.classList.contains('collapsing');
 
-    if (window.bootstrap && window.bootstrap.Collapse) {
-      const collapseInstance = window.bootstrap.Collapse.getInstance(mainNav);
-      if (collapseInstance) {
-        collapseInstance.hide();
-      }
-    }
-  });
-}
+  if (isCollapsing) return; // Si ya se está cerrando, no hacemos nada
+
+  // Si hacemos clic en un enlace del nav, lo cerramos
+  const isNavLink = event.target.closest('.nav-link');
+  if (isNavLink && isCollapseOpen) {
+    const collapseInstance = bootstrap.Collapse.getInstance(mainNav);
+    if (collapseInstance) collapseInstance.hide();
+    return;
+  }
+
+  // Si hacemos clic fuera del navbar completo estando abierto, lo cerramos
+  if (!isNavbar && isCollapseOpen) {
+    const collapseInstance = bootstrap.Collapse.getInstance(mainNav);
+    if (collapseInstance) collapseInstance.hide();
+  }
+});
+
 
 updateCartView();
 updatePaymentArtifact();
