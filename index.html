@@ -10,9 +10,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/css/all.min.css">
+  <link rel="stylesheet" href="vendor/css/animate.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -107,7 +107,7 @@
       <div class="row g-3">
         <div class="col-md-6 col-xl-4 reveal" data-animation="animate__fadeInUp">
           <article class="service-card h-100">
-            <img src="assets/Valoracion Inicialjpeg_3_11zon.webp" class="service-img" alt="Valoracion Inicial">
+            <img src="assets/Valoracion Inicialjpeg_3_11zon.webp" class="service-img" alt="Valoracion Inicial" loading="lazy">
             <h3>Valoracion Inicial</h3>
             <p>Sesion diagnostica para comprender el contexto emocional y definir ruta de intervencion.</p>
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-auto">
@@ -119,7 +119,7 @@
         </div>
         <div class="col-md-6 col-xl-4 reveal" data-animation="animate__fadeInUp">
           <article class="service-card h-100 featured-card">
-            <img src="assets/Terapia Individual_2_11zon.webp" class="service-img" alt="Terapia Individual">
+            <img src="assets/Terapia Individual_2_11zon.webp" class="service-img" alt="Terapia Individual" loading="lazy">
             <h3>Terapia Individual</h3>
             <p>Espacio clinico personalizado para ansiedad, autocuidado, limites y crecimiento personal.</p>
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-auto">
@@ -131,7 +131,7 @@
         </div>
         <div class="col-md-6 col-xl-4 reveal" data-animation="animate__fadeInUp">
           <article class="service-card h-100">
-            <img src="assets/pareja_1_11zon.webp" class="service-img" alt="Terapia de Pareja">
+            <img src="assets/pareja_1_11zon.webp" class="service-img" alt="Terapia de Pareja" loading="lazy">
             <h3>Terapia de Pareja</h3>
             <p>Proceso guiado para fortalecer comunicacion, reparar vinculos y construir acuerdos saludables.</p>
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-auto">
@@ -245,7 +245,7 @@
         <div class="col-12 col-sm-6 col-lg-4 reveal" data-animation="animate__fadeInUp">
           <div
             class="d-flex flex-column align-items-center border border-light-subtle p-5 rounded-4 h-100 bg-white shadow-sm">
-            <img class="rounded-circle team-img mb-3" src="assets/maria.webp" alt="Dra. Valentina Rojas Serrano">
+            <img class="rounded-circle team-img mb-3" src="assets/maria.webp" alt="Dra. Valentina Rojas Serrano" loading="lazy">
             <h2 class="h5 text-dark fw-semibold mb-1 text-center">Dra. Valentina Rojas Serrano</h2>
             <p class="text-muted small mb-3">Psicología Clínica</p>
             <p class="text-center text-secondary small">Psicologa clinica, especialista en regulacion emocional y
@@ -257,7 +257,7 @@
         <div class="col-12 col-sm-6 col-lg-4 reveal" data-animation="animate__fadeInUp">
           <div
             class="d-flex flex-column align-items-center border border-light-subtle p-5 rounded-4 h-100 bg-white shadow-sm">
-            <img class="rounded-circle team-img mb-3" src="assets/merys.webp" alt="Dra. Mariana Castano Beltran">
+            <img class="rounded-circle team-img mb-3" src="assets/merys.webp" alt="Dra. Mariana Castano Beltran" loading="lazy">
             <h2 class="h5 text-dark fw-semibold mb-1 text-center">Dra. Mariana Castano Beltran</h2>
             <p class="text-muted small mb-3">Terapia de Pareja</p>
             <p class="text-center text-secondary small">Psicologa de pareja y familia, enfoque en comunicacion efectiva
@@ -269,7 +269,7 @@
         <div class="col-12 col-sm-6 col-lg-4 reveal" data-animation="animate__fadeInUp">
           <div
             class="d-flex flex-column align-items-center border border-light-subtle p-5 rounded-4 h-100 bg-white shadow-sm">
-            <img class="rounded-circle team-img mb-3" src="assets/paula.webp" alt="Dra. Paula">
+            <img class="rounded-circle team-img mb-3" src="assets/paula.webp" alt="Dra. Paula" loading="lazy">
             <h2 class="h5 text-dark fw-semibold mb-1 text-center">Dra. Paula</h2>
             <p class="text-muted small mb-3">Salud Mental</p>
             <p class="text-center text-secondary small">Descripción del servicio de la nueva psicóloga para acompañar tu
@@ -346,8 +346,8 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+  <script src="vendor/js/bootstrap.bundle.min.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>

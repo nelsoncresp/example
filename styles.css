@@ -820,6 +820,7 @@ body {
 .gradient-text {
   background: linear-gradient(to right, #8B5CF6, #E0724A, #9938CA);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   font-weight: 700;
