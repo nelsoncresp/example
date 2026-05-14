@@ -4,347 +4,507 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Senda Mental | Psicologia Clinica</title>
+  <title> Consultorio Psicológico</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;700;800&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
   <link rel="stylesheet" href="vendor/css/all.min.css">
   <link rel="stylesheet" href="vendor/css/animate.min.css">
   <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body>
   <div class="bg-glow bg-glow-left"></div>
   <div class="bg-glow bg-glow-right"></div>
 
-  <nav class="navbar navbar-expand-lg fixed-top senda-navbar" id="inicio">
-    <div class="container-fluid px-3 px-lg-4">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
-        <img src="https://img.icons8.com/stickers/100/psychology.png" alt="Logo Senda Mental">
-        <span>Salud Mental</span>
-      </a>
-
-      <button class="navbar-toggler border-0 shadow-none text-white" id="nav-toggle" type="button"
-        data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
-        aria-label="Abrir menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-
-      <div class="collapse navbar-collapse" id="main-nav">
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-2 text-uppercase fw-bold">
-          <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#tienda">Tienda</a></li>
-          <li class="nav-item"><a class="nav-link" href="#carrito">Carrito</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-        </ul>
-      </div>
-
-      <button class="cart-badge" id="cart-badge" type="button" aria-label="Servicios en carrito">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <span id="cart-count">0</span>
-      </button>
-    </div>
-  </nav>
-
   <div id="cart-alert" class="alert alert-success d-none mb-0 cart-alert" role="alert" aria-live="polite"></div>
 
-  <button class="cart-launcher d-lg-none" id="cart-launcher" type="button" aria-label="Abrir carrito">
-    <i class="fa-solid fa-bag-shopping"></i>
-    <span>Carrito</span>
-    <strong id="cart-launcher-count">0</strong>
-  </button>
+  <div id="main-view" class="animate__animated">
+    <nav class="navbar navbar-expand-lg fixed-top senda-navbar" id="inicio">
+      <div class="container-fluid px-3 px-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+          <img src="https://img.icons8.com/stickers/100/psychology.png" alt="Logo Senda Mental">
+          <span>Salud Mental</span>
+        </a>
 
-  <main class="container-xxl main-wrap">
-    <section class="hero-v2 mb-5 shadow-sm">
-      <div class="row g-5 align-items-center">
-        <!-- Columna de Texto -->
-        <div class="col-lg-7 text-center text-lg-start">
-          <p class="eyebrow text-primary mb-3"><i class="fa-solid fa-heart-pulse"></i> Bienestar y Salud Mental</p>
-          <h1>Equilibrio emocional con metodo clinico y acompanamiento humano.</h1>
-          <p class="hero-copy mx-auto mx-lg-0">
-            Senda Mental integra evaluacion profesional, plan terapeutico personalizado y seguimiento continuo para
-            transformar tu bienestar desde decisiones sostenibles.
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tienda">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+
+        <button class="cart-badge" id="cart-badge" type="button" aria-label="Servicios en carrito">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="cart-count">0</span>
+        </button>
+
+        <button class="navbar-toggler border-0 shadow-none text-white ms-2" id="nav-toggle" type="button"
+          data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
+          aria-label="Abrir menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+
+    <button class="cart-launcher" id="cart-launcher" type="button" aria-label="Abrir carrito">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span>Carrito</span>
+      <strong id="cart-launcher-count">0</strong>
+    </button>
+
+    <main class="container-xxl main-wrap">
+      <section class="hero-v2 mb-5 shadow-sm">
+        <div class="row g-5 align-items-center">
+          <!-- Columna de Texto -->
+          <div class="col-lg-7 text-center text-lg-start">
+            <p class="eyebrow text-primary mb-3"><i class="fa-solid fa-heart-pulse"></i> Bienestar y Salud Mental</p>
+            <h1>Equilibrio emocional con metodo clinico y acompanamiento humano.</h1>
+            <p class="hero-copy mx-auto mx-lg-0">
+              Senda Mental integra evaluacion profesional, plan terapeutico personalizado y seguimiento continuo para
+              transformar tu bienestar desde decisiones sostenibles.
+            </p>
+
+            <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 mt-4">
+              <a href="#tienda" class="btn btn-senda px-4 py-3">Agendar consulta</a>
+              <a href="#dofa" class="btn btn-senda-light px-4 py-3">Conocer metodo</a>
+            </div>
+
+            <!-- Social Proof (Avatares de Psicólogos) -->
+            <div class="avatar-group justify-content-center justify-content-lg-start">
+              <div class="avatar-list">
+                <img src="assets/maria.webp" alt="Psicóloga 1">
+                <img src="assets/merys.webp" alt="Psicóloga 2">
+                <img src="assets/paula.webp" alt="Psicóloga 3">
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna de Imagen -->
+          <div class="col-lg-5 d-none d-lg-block">
+            <div class="position-relative">
+              <img src="assets/Valoracion-Inicialjpeg.webp" class="hero-main-img" alt="Terapia profesional">
+              <div
+                class="position-absolute bottom-0 start-0 bg-white p-3 rounded-4 shadow-lg m-3 border-start border-primary border-4"
+                style="max-width: 200px;">
+                <p class="small fw-bold mb-1">Cuidado Integral</p>
+                <p class="x-small text-muted mb-0">Enfoque centrado en la persona y su entorno.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-4" id="tienda">
+        <div class="section-head mb-3">
+          <p class="eyebrow"><i class="fa-solid fa-store"></i> Tienda en linea</p>
+          <h2>Servicios terapeuticos</h2>
+        </div>
+        <div class="row g-3 justify-content-center">
+          <div class="col-md-6 col-xl-4">
+            <article class="service-card h-100" style="opacity:0;animation:fadeInUp 0.4s ease forwards;">
+              <img src="assets/Valoracion-Inicialjpeg.webp" class="service-img" alt="Valoracion Inicial" loading="lazy">
+              <h3>Valoracion Inicial</h3>
+              <p>Sesion diagnostica para comprender el contexto emocional y definir ruta de intervencion.</p>
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-auto">
+                <strong>$120.000 COP</strong>
+                <button class="btn btn-senda add-to-cart" data-name="Valoracion Inicial" data-price="130000"
+                  type="button">Agendar</button>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <article class="service-card h-100 featured-card"
+              style="opacity:0;animation:fadeInUp 0.5s ease forwards;animation-delay:0.1s;">
+              <img src="assets/Terapia-Individual.webp" class="service-img" alt="Terapia Individual" loading="lazy">
+              <h3>Terapia Individual</h3>
+              <p>Espacio clinico personalizado para ansiedad, autocuidado, limites y crecimiento personal.</p>
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-auto">
+                <strong>$110.000 COP</strong>
+                <button class="btn btn-senda add-to-cart" data-name="Terapia Individual" data-price="110000"
+                  type="button">Agendar</button>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <article class="service-card h-100"
+              style="opacity:0;animation:fadeInUp 0.5s ease forwards;animation-delay:0.2s;">
+              <img src="assets/pareja.webp" class="service-img" alt="Terapia de Pareja" loading="lazy">
+              <h3>Terapia de Pareja</h3>
+              <p>Proceso guiado para fortalecer comunicacion, reparar vinculos y construir acuerdos saludables.</p>
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-auto">
+                <strong>$130.000 COP</strong>
+                <button class="btn btn-senda add-to-cart" data-name="Terapia de Pareja" data-price="180000"
+                  type="button">Agendar</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal de Agendamiento -->
+      <div class="modal fade" id="modal-agendar" tabindex="-1" aria-labelledby="modal-agendar-label">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content rounded-4 border-0 shadow">
+            <div class="modal-header border-bottom-0 pb-0">
+              <h5 class="modal-title fw-bold" id="modal-agendar-label">Agendar Servicio</h5>
+              <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p class="text-muted small mb-4">Configura tu <strong id="modal-service-name"
+                  class="text-dark">Servicio</strong>.</p>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold small">Tu nombre</label>
+                <input type="text" class="form-control bg-light" id="modal-name-input" placeholder="Tu nombre completo"
+                  required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold small">Profesional</label>
+                <select class="form-select bg-light" id="modal-psychologist-select" required>
+                  <option value="" selected disabled>Seleccionar profesional</option>
+                  <option value="Psi. Maria Cabarcas">Psi. Maria Cabarcas</option>
+                  <option value="Psi. Merys Crúzate">Psi. Merys Crúzate</option>
+                  <option value="Psi. Paula Quintero">Psi. Paula Quintero</option>
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold small">Fecha deseada</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light border-end-0"><i class="fa-regular fa-calendar"></i></span>
+                  <input type="date" class="form-control bg-light border-start-0 ps-0 shadow-none" id="modal-date-input"
+                    required>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded-3 mb-4">
+                <span class="fw-bold small">Valor a pagar:</span>
+                <strong class="fs-5 text-primary" id="modal-service-price">$0 COP</strong>
+              </div>
+
+              <button type="button" class="btn btn-senda w-100 py-3" id="btn-confirm-add-cart">
+                Agregar al carrito
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="mb-5" id="dofa">
+        <div class="section-head mb-4">
+          <p class="eyebrow"><i class="fa-solid fa-chart-simple"></i> Analisis estrategico</p>
+          <h2>Matriz DOFA</h2>
+        </div>
+        <div class="row g-4">
+          <!-- Fortalezas -->
+          <div class="col-md-6 reveal" data-animation="animate__fadeInUp">
+            <article class="dofa-card dofa-strengths">
+              <div class="head"><i class="fa-solid fa-shield-heart"></i> Fortalezas</div>
+              <div class="content">
+                <ul class="list-unstyled mb-0">
+                  <li>Tres psicólogas con enfoques clínicos complementarios.</li>
+                  <li>Transparencia total en precios y estructura de servicios.</li>
+                  <li>Atención personalizada con alto nivel de empatía.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <!-- Oportunidades -->
+          <div class="col-md-6 reveal" data-animation="animate__fadeInUp">
+            <article class="dofa-card dofa-opportunities">
+              <div class="head"><i class="fa-solid fa-rocket"></i> Oportunidades</div>
+              <div class="content">
+                <ul class="list-unstyled mb-0">
+                  <li>Creciente apertura cultural hacia la terapia online.</li>
+                  <li>Posibilidad de alianzas estratégicas con instituciones.</li>
+                  <li>Expansión de servicios a talleres grupales preventivos.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <!-- Debilidades -->
+          <div class="col-md-6 reveal" data-animation="animate__fadeInUp">
+            <article class="dofa-card dofa-weaknesses">
+              <div class="head"><i class="fa-solid fa-chart-line-down"></i> Debilidades</div>
+              <div class="content">
+                <ul class="list-unstyled mb-0">
+                  <li>Capacidad de agenda limitada por alta demanda.</li>
+                  <li>Marca en fase inicial de posicionamiento digital.</li>
+                  <li>Dependencia de canales digitales para la captación.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <!-- Amenazas -->
+          <div class="col-md-6 reveal" data-animation="animate__fadeInUp">
+            <article class="dofa-card dofa-threats">
+              <div class="head"><i class="fa-solid fa-land-mine-on"></i> Amenazas</div>
+              <div class="content">
+                <ul class="list-unstyled mb-0">
+                  <li>Alta competencia de plataformas de terapia masiva.</li>
+                  <li>Inestabilidad económica que afecte la inversión en salud.</li>
+                  <li>Saturación de mensajes de bienestar en redes sociales.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto">
+        <div class="section-head mb-3">
+          <p class="eyebrow"><i class="fa-solid fa-user-group"></i> Pagina de contacto</p>
+          <h2>Equipo profesional</h2>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <!-- Psi. Maria Cabarcas -->
+          <div class="col-12 col-sm-6 col-lg-4 reveal" data-animation="animate__fadeInUp">
+            <div class="team-card h-100">
+              <div class="team-img-wrapper">
+                <img class="team-img" src="assets/maria.webp" alt="Psi. Maria Cabarcas" loading="lazy">
+              </div>
+              <h3 class="team-name">Psi. Maria Cabarcas</h3>
+              <span class="team-role">Psicología Clínica</span>
+              <p class="team-desc">Especialista en regulación emocional y procesos de ansiedad, con un enfoque humano y empoderador.</p>
+              <div class="team-socials">
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Psi. Merys Cruzate -->
+          <div class="col-12 col-sm-6 col-lg-4 reveal" data-animation="animate__fadeInUp">
+            <div class="team-card h-100">
+              <div class="team-img-wrapper">
+                <img class="team-img" src="assets/merys.webp" alt="Psi. Merys Cruzate" loading="lazy">
+              </div>
+              <h3 class="team-name">Psi. Merys Cruzate</h3>
+              <span class="team-role">Terapia de Pareja</span>
+              <p class="team-desc">Experta en comunicación efectiva y vínculos sanos, ayudando a construir relaciones sólidas y duraderas.</p>
+              <div class="team-socials">
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Psi. Paula Quintero -->
+          <div class="col-12 col-sm-6 col-lg-4 reveal" data-animation="animate__fadeInUp">
+            <div class="team-card h-100">
+              <div class="team-img-wrapper">
+                <img class="team-img" src="assets/paula.webp" alt="Psi. Paula Quintero" loading="lazy">
+              </div>
+              <h3 class="team-name">Psi. Paula Quintero</h3>
+              <span class="team-role">Salud Mental</span>
+              <p class="team-desc">Especialista en procesos de desarrollo y aprendizaje, enfocada en el bienestar integral de sus pacientes.</p>
+              <div class="team-socials">
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <a class="whatsapp-fab" href="https://wa.me/573244491557?text=Hola,%20quiero%20informacion%20sobre%20Salud%20Mental"
+      target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">
+      <span class="tooltip-msg">¡Contáctanos!</span>
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <footer class="site-footer">
+      <div class="container footer-container">
+        <div class="row g-4">
+          <!-- Columna 1: Marca y Bio -->
+          <div class="col-12 col-md-4 col-lg-4">
+            <div class="footer-brand mb-3">
+              <img src="https://img.icons8.com/stickers/100/psychology.png" alt="Logo Salud Mental">
+              <h2 class="h4 mb-0 text-white fw-bold">Salud Mental</h2>
+            </div>
+            <p class="footer-text pe-lg-4">
+              Atencion profesional, servicios claros y acompanamiento humano para cada proceso. Estamos comprometidos
+              con
+              tu bienestar emocional y crecimiento personal.
+            </p>
+          </div>
+
+          <!-- Columna 2: Enlaces Rápidos -->
+          <div class="col-6 col-md-4 col-lg-2">
+            <h3 class="footer-title">Explora</h3>
+            <ul class="list-unstyled footer-links-list">
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#tienda">Servicios</a></li>
+              <li><a href="#dofa">Conócenos</a></li>
+              <li><a href="#contacto">Equipo</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna 3: Especialidades -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <h3 class="footer-title">Especialidades</h3>
+            <ul class="list-unstyled footer-links-list">
+              <li>Psicología Clínica</li>
+              <li>Terapia de Pareja</li>
+              <li>Regulación Emocional</li>
+              <li>Procesos de Ansiedad</li>
+            </ul>
+          </div>
+
+          <!-- Columna 4: Contacto y Social -->
+          <div class="col-12 col-lg-3">
+            <h3 class="footer-title">Conéctate</h3>
+            <p class="small text-white-50 mb-3"><i class="fa-solid fa-location-dot me-2"></i> Consultorio Privado,
+              Barranquilla</p>
+            <div class="footer-social-v2 mb-3">
+              <a href="#" class="social-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="social-btn fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="social-btn wa" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <button id="btn-open-contact" class="btn btn-outline-light btn-sm w-100 fw-bold"><i
+                class="fa-regular fa-envelope me-2"></i>Enviar correo</button>
+          </div>
+        </div>
+
+        <hr class="my-4 border-white opacity-10">
+
+        <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+          <p class="mb-0 small text-white-50">&copy; 2026 Salud Mental. Todos los derechos reservados.</p>
+          <p class="mb-0 small text-white-50">Diseño con <i class="fa-solid fa-heart text-danger"></i> para tu bienestar
           </p>
-
-          <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 mt-4">
-            <a href="#tienda" class="btn btn-senda px-4 py-3">Agendar consulta</a>
-            <a href="#dofa" class="btn btn-senda-light px-4 py-3">Conocer metodo</a>
-          </div>
-
-          <!-- Social Proof (Avatares de Psicólogos) -->
-          <div class="avatar-group justify-content-center justify-content-lg-start">
-            <div class="avatar-list">
-              <img src="assets/maria.webp" alt="Psicóloga 1">
-              <img src="assets/merys.webp" alt="Psicóloga 2">
-              <img src="assets/paula.webp" alt="Psicóloga 3">
-            </div>
-          </div>
-        </div>
-
-        <!-- Columna de Imagen -->
-        <div class="col-lg-5 d-none d-lg-block">
-          <div class="position-relative">
-            <img src="assets/Valoracion Inicialjpeg_3_11zon.webp" class="hero-main-img" alt="Terapia profesional">
-            <div
-              class="position-absolute bottom-0 start-0 bg-white p-3 rounded-4 shadow-lg m-3 border-start border-primary border-4"
-              style="max-width: 200px;">
-              <p class="small fw-bold mb-1">Cuidado Integral</p>
-              <p class="x-small text-muted mb-0">Enfoque centrado en la persona y su entorno.</p>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
+    </footer>
+  </div> <!-- end main-view -->
 
-    <section class="mb-4" id="tienda">
-      <div class="section-head mb-3 reveal" data-animation="animate__fadeInLeft">
-        <p class="eyebrow"><i class="fa-solid fa-store"></i> Tienda en linea</p>
-        <h2>Servicios terapeuticos en COP</h2>
+  <div id="cart-view" class="container-xxl min-vh-100 d-none d-flex flex-column py-5 animate__animated">
+    <div class="mx-auto w-100" style="max-width: 800px; padding-top: 60px;">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <button id="btn-back-home-cart" class="btn btn-link text-decoration-none text-dark fw-bold px-0">
+          <i class="fa-solid fa-arrow-left me-2"></i> Seguir explorando
+        </button>
+        <h2 class="h3 mb-0 fw-bold"><i class="fa-solid fa-cart-shopping me-2"></i>Tu carrito</h2>
       </div>
-      <div class="row g-3">
-        <div class="col-md-6 col-xl-4 reveal" data-animation="animate__fadeInUp">
-          <article class="service-card h-100">
-            <img src="assets/Valoracion Inicialjpeg_3_11zon.webp" class="service-img" alt="Valoracion Inicial" loading="lazy">
-            <h3>Valoracion Inicial</h3>
-            <p>Sesion diagnostica para comprender el contexto emocional y definir ruta de intervencion.</p>
-            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-auto">
-              <strong>$130.000 COP</strong>
-              <button class="btn btn-senda add-to-cart" data-name="Valoracion Inicial" data-price="130000"
-                type="button">Compra ahora</button>
-            </div>
-          </article>
-        </div>
-        <div class="col-md-6 col-xl-4 reveal" data-animation="animate__fadeInUp">
-          <article class="service-card h-100 featured-card">
-            <img src="assets/Terapia Individual_2_11zon.webp" class="service-img" alt="Terapia Individual" loading="lazy">
-            <h3>Terapia Individual</h3>
-            <p>Espacio clinico personalizado para ansiedad, autocuidado, limites y crecimiento personal.</p>
-            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-auto">
-              <strong>$110.000 COP</strong>
-              <button class="btn btn-senda add-to-cart" data-name="Terapia Individual" data-price="110000"
-                type="button">Compra ahora</button>
-            </div>
-          </article>
-        </div>
-        <div class="col-md-6 col-xl-4 reveal" data-animation="animate__fadeInUp">
-          <article class="service-card h-100">
-            <img src="assets/pareja_1_11zon.webp" class="service-img" alt="Terapia de Pareja" loading="lazy">
-            <h3>Terapia de Pareja</h3>
-            <p>Proceso guiado para fortalecer comunicacion, reparar vinculos y construir acuerdos saludables.</p>
-            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-auto">
-              <strong>$180.000 COP</strong>
-              <button class="btn btn-senda add-to-cart" data-name="Terapia de Pareja" data-price="180000"
-                type="button">Compra ahora</button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <aside class="cart-sidebar" id="carrito" aria-label="Carrito de compras">
-      <article class="cart-panel cart-sidebar-card">
-        <div class="cart-sidebar-head">
-          <p class="eyebrow mb-1"><i class="fa-solid fa-cart-shopping"></i> Carrito de compras</p>
-          <div class="d-flex align-items-center justify-content-between gap-2">
-            <h2 class="mb-0">Tu carrito</h2>
-            <button class="cart-close d-lg-none" id="cart-close" type="button" aria-label="Cerrar carrito">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-        </div>
-        <div class="cart-sidebar-scroll">
-          <ul id="cart-items-page" class="cart-items mb-0">
-            <li class="empty-state">Todavia no agregas servicios.</li>
-          </ul>
-        </div>
-        <div class="cart-sidebar-footer">
-          <p class="checkout-title">Resumen y pago</p>
-          <div class="payment-options">
-            <label>
-              <input type="radio" name="payment" value="PSE" checked>
-              <span>PSE</span>
+      <div class="bg-white p-4 p-lg-5 rounded-4 shadow-sm border border-light-subtle">
+        <ul id="cart-items-page" class="cart-items mb-4 list-unstyled">
+          <li class="empty-state text-center text-muted py-4"><i
+              class="fa-solid fa-cart-shopping fs-1 d-block mb-3 opacity-25"></i>Agrega un servicio para continuar</li>
+        </ul>
+
+        <div class="payment-section mt-4 d-none">
+          <h3 class="h5 fw-bold mb-3">Método de pago</h3>
+          <div class="payment-options d-flex gap-3 mb-4">
+            <label class="flex-grow-1 payment-radio border rounded-3 p-3 cursor-pointer text-center">
+              <input type="radio" name="payment" value="PSE" class="d-none" checked>
+              <span class="d-block fw-bold mt-2">PSE</span>
             </label>
-            <label>
-              <input type="radio" name="payment" value="Nequi">
-              <span>Nequi</span>
+            <label class="flex-grow-1 payment-radio border rounded-3 p-3 cursor-pointer text-center">
+              <input type="radio" name="payment" value="Nequi" class="d-none">
+              <span class="d-block fw-bold mt-2">Nequi</span>
+            </label>
+            <label class="flex-grow-1 payment-radio border rounded-3 p-3 cursor-pointer text-center">
+              <input type="radio" name="payment" value="Card" class="d-none">
+              <span class="d-block fw-bold mt-2">Tarjeta</span>
+            </label>
+            <label class="flex-grow-1 payment-radio border rounded-3 p-3 cursor-pointer text-center">
+              <input type="radio" name="payment" value="Cash" class="d-none">
+              <span class="d-block fw-bold mt-2">Efectivo</span>
             </label>
           </div>
-          <div id="payment-artifact" class="payment-artifact"></div>
-          <div class="checkout-total">
-            <span>Total</span>
-            <strong id="cart-total-page">$0 COP</strong>
-          </div>
-          <p id="checkout-message" class="checkout-message" aria-live="polite"></p>
-          <button class="btn btn-senda w-100" id="checkout-btn" type="button">Pagar ahora</button>
-        </div>
-      </article>
-    </aside>
 
-    <section class="mb-5" id="dofa">
-      <div class="section-head mb-4">
-        <p class="eyebrow"><i class="fa-solid fa-chart-simple"></i> Analisis estrategico</p>
-        <h2>Matriz DOFA</h2>
-      </div>
-      <div class="row g-4">
-        <!-- Debilidades -->
-        <div class="col-md-6 reveal" data-animation="animate__fadeInUp">
-          <article class="dofa-card dofa-weaknesses h-100">
-            <h3><i class="fa-solid fa-arrow-down-short-wide"></i> Debilidades</h3>
-            <ul class="list-unstyled mb-0">
-              <li>Capacidad limitada de agenda.</li>
-              <li>Marca joven en fase de posicionamiento.</li>
-            </ul>
-          </article>
-        </div>
+          <div id="payment-artifact" class="bg-light rounded-4 p-4 text-center mb-4"></div>
 
-        <!-- Oportunidades -->
-        <div class="col-md-6 reveal" data-animation="animate__fadeInUp">
-          <article class="dofa-card dofa-opportunities h-100">
-            <h3><i class="fa-solid fa-up-right-from-square"></i> Oportunidades</h3>
-            <ul class="list-unstyled mb-0">
-              <li>Mayor apertura a terapia online.</li>
-              <li>Alianzas con colegios y empresas.</li>
-            </ul>
-          </article>
-        </div>
-
-        <!-- Fortalezas -->
-        <div class="col-md-6 reveal" data-animation="animate__fadeInUp">
-          <article class="dofa-card dofa-strengths h-100">
-            <h3><i class="fa-solid fa-shield-heart"></i> Fortalezas</h3>
-            <ul class="list-unstyled mb-0">
-              <li>Dos psicologas con enfoques complementarios.</li>
-              <li>Precios claros y servicios estructurados.</li>
-            </ul>
-          </article>
-        </div>
-
-        <!-- Amenazas -->
-        <div class="col-md-6 reveal" data-animation="animate__fadeInUp">
-          <article class="dofa-card dofa-threats h-100">
-            <h3><i class="fa-solid fa-triangle-exclamation"></i> Amenazas</h3>
-            <ul class="list-unstyled mb-0">
-              <li>Alta competencia de grandes plataformas.</li>
-              <li>Usuarios sensibles al precio.</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto">
-      <div class="section-head mb-3">
-        <p class="eyebrow"><i class="fa-solid fa-user-group"></i> Pagina de contacto</p>
-        <h2>Equipo profesional</h2>
-      </div>
-      <div class="row g-4 justify-content-center">
-        <!-- Dra. Valentina Rojas Serrano -->
-        <div class="col-12 col-sm-6 col-lg-4 reveal" data-animation="animate__fadeInUp">
-          <div
-            class="d-flex flex-column align-items-center border border-light-subtle p-5 rounded-4 h-100 bg-white shadow-sm">
-            <img class="rounded-circle team-img mb-3" src="assets/maria.webp" alt="Dra. Valentina Rojas Serrano" loading="lazy">
-            <h2 class="h5 text-dark fw-semibold mb-1 text-center">Dra. Valentina Rojas Serrano</h2>
-            <p class="text-muted small mb-3">Psicología Clínica</p>
-            <p class="text-center text-secondary small">Psicologa clinica, especialista en regulacion emocional y
-              procesos de ansiedad.</p>
+          <div id="card-fields" class="d-none">
+            <div class="mb-3">
+              <label class="form-label fw-bold small">Tipo de tarjeta</label>
+              <select class="form-select bg-light" id="card-type">
+                <option value="">Seleccionar tipo</option>
+                <option value="visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="amex">American Express</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold small">Número de tarjeta</label>
+              <input type="text" class="form-control bg-light" id="card-number" placeholder="1234 5678 9012 3456"
+                maxlength="19">
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label class="form-label fw-bold small">Fecha de expiración</label>
+                <input type="text" class="form-control bg-light" id="card-expiry" placeholder="MM/AA" maxlength="5">
+              </div>
+              <div class="col-6">
+                <label class="form-label fw-bold small">CVV</label>
+                <input type="text" class="form-control bg-light" id="card-cvv" placeholder="123" maxlength="4">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold small">Nombre en la tarjeta</label>
+              <input type="text" class="form-control bg-light" id="card-name" placeholder="Nombre completo">
+            </div>
           </div>
         </div>
 
-        <!-- Dra. Mariana Castano Beltran -->
-        <div class="col-12 col-sm-6 col-lg-4 reveal" data-animation="animate__fadeInUp">
-          <div
-            class="d-flex flex-column align-items-center border border-light-subtle p-5 rounded-4 h-100 bg-white shadow-sm">
-            <img class="rounded-circle team-img mb-3" src="assets/merys.webp" alt="Dra. Mariana Castano Beltran" loading="lazy">
-            <h2 class="h5 text-dark fw-semibold mb-1 text-center">Dra. Mariana Castano Beltran</h2>
-            <p class="text-muted small mb-3">Terapia de Pareja</p>
-            <p class="text-center text-secondary small">Psicologa de pareja y familia, enfoque en comunicacion efectiva
-              y vinculos sanos.</p>
+        <div
+          class="border-top pt-4 mt-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+          <div>
+            <p class="text-muted small mb-0">Total a pagar</p>
+            <strong id="cart-total-page" class="fs-3 fw-bold text-dark">$0 COP</strong>
           </div>
+          <button class="btn btn-senda px-5 py-3 fs-5" id="btn-go-checkout" type="button" disabled>Confirmar y Pagar <i
+              class="fa-solid fa-arrow-right ms-2"></i></button>
         </div>
-
-        <!-- Dra. Paula -->
-        <div class="col-12 col-sm-6 col-lg-4 reveal" data-animation="animate__fadeInUp">
-          <div
-            class="d-flex flex-column align-items-center border border-light-subtle p-5 rounded-4 h-100 bg-white shadow-sm">
-            <img class="rounded-circle team-img mb-3" src="assets/paula.webp" alt="Dra. Paula" loading="lazy">
-            <h2 class="h5 text-dark fw-semibold mb-1 text-center">Dra. Paula</h2>
-            <p class="text-muted small mb-3">Salud Mental</p>
-            <p class="text-center text-secondary small">Descripción del servicio de la nueva psicóloga para acompañar tu
-              proceso mental.</p>
-          </div>
-        </div>
-      </div>
-
-    </section>
-  </main>
-
-  <a class="whatsapp-fab" href="https://wa.me/573244491557?text=Hola,%20quiero%20informacion%20sobre%20Salud%20Mental"
-    target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
-
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <div class="row g-4">
-        <!-- Columna 1: Marca y Bio -->
-        <div class="col-12 col-md-4 col-lg-4">
-          <div class="footer-brand mb-3">
-            <img src="https://img.icons8.com/stickers/100/psychology.png" alt="Logo Salud Mental">
-            <h2 class="h4 mb-0 text-white fw-bold">Salud Mental</h2>
-          </div>
-          <p class="footer-text pe-lg-4">
-            Atencion profesional, servicios claros y acompanamiento humano para cada proceso. Estamos comprometidos con
-            tu bienestar emocional y crecimiento personal.
-          </p>
-        </div>
-
-        <!-- Columna 2: Enlaces Rápidos -->
-        <div class="col-6 col-md-4 col-lg-2">
-          <h3 class="footer-title">Explora</h3>
-          <ul class="list-unstyled footer-links-list">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#tienda">Servicios</a></li>
-            <li><a href="#dofa">Conócenos</a></li>
-            <li><a href="#contacto">Equipo</a></li>
-          </ul>
-        </div>
-
-        <!-- Columna 3: Especialidades -->
-        <div class="col-6 col-md-4 col-lg-3">
-          <h3 class="footer-title">Especialidades</h3>
-          <ul class="list-unstyled footer-links-list">
-            <li>Psicología Clínica</li>
-            <li>Terapia de Pareja</li>
-            <li>Regulación Emocional</li>
-            <li>Procesos de Ansiedad</li>
-          </ul>
-        </div>
-
-        <!-- Columna 4: Contacto y Social -->
-        <div class="col-12 col-lg-3">
-          <h3 class="footer-title">Conéctate</h3>
-          <p class="small text-white-50 mb-3"><i class="fa-solid fa-location-dot me-2"></i> Consultorio Privado,
-            Barranquilla</p>
-          <div class="footer-social-v2">
-            <a href="#" class="social-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="social-btn fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="social-btn wa" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <hr class="my-4 border-white opacity-10">
-
-      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-        <p class="mb-0 small text-white-50">&copy; 2026 Salud Mental. Todos los derechos reservados.</p>
-        <p class="mb-0 small text-white-50">Diseño con <i class="fa-solid fa-heart text-danger"></i> para tu bienestar
-        </p>
       </div>
     </div>
-  </footer>
+  </div>
+
+  <div id="contact-view"
+    class="container-xxl min-vh-100 d-none d-flex flex-column justify-content-center align-items-center py-5 animate__animated">
+    <div class="w-100" style="max-width: 600px;">
+      <button id="btn-back-home" class="btn btn-link text-decoration-none text-dark fw-bold mb-4 px-0">
+        <i class="fa-solid fa-arrow-left me-2"></i> Volver al inicio
+      </button>
+      <div class="bg-white p-4 p-lg-5 rounded-4 shadow-sm border border-light-subtle">
+        <h2 class="mb-4">Envíanos un mensaje</h2>
+        <form id="contact-form">
+          <div class="mb-3">
+            <label class="form-label fw-bold small">Nombre completo</label>
+            <input type="text" class="form-control bg-light" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold small">Correo electrónico</label>
+            <input type="email" class="form-control bg-light" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-bold small">Mensaje</label>
+            <textarea class="form-control bg-light" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-senda w-100 py-3" id="btn-submit-contact">
+            <span>Enviar mensaje</span>
+            <div class="spinner-border spinner-border-sm text-white ms-2 d-none" role="status" id="contact-spinner">
+            </div>
+          </button>
+        </form>
+        <div id="contact-success" class="alert alert-success mt-4 d-none mb-0">
+          <i class="fa-solid fa-circle-check me-2"></i> ¡Mensaje enviado con éxito! Te contactaremos pronto.
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="vendor/js/bootstrap.bundle.min.js" defer></script>
   <script src="script.js" defer></script>
