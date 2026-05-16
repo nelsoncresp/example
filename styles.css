@@ -448,6 +448,32 @@ section#contacto {
   font-size: 0.95rem;
 }
 
+/* Modern DOFA Colors */
+.dofa-strengths {
+  border-left: 4px solid #22c55e !important;
+  background: linear-gradient(to right, rgba(34, 197, 94, 0.03), transparent);
+}
+.dofa-strengths h3 i { color: #22c55e; }
+
+.dofa-opportunities {
+  border-left: 4px solid #3b82f6 !important;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.03), transparent);
+}
+.dofa-opportunities h3 i { color: #3b82f6; }
+
+.dofa-weaknesses {
+  border-left: 4px solid #ef4444 !important;
+  background: linear-gradient(to right, rgba(239, 68, 68, 0.03), transparent);
+}
+.dofa-weaknesses h3 i { color: #ef4444; }
+
+.dofa-threats {
+  border-left: 4px solid #f59e0b !important;
+  background: linear-gradient(to right, rgba(245, 158, 11, 0.03), transparent);
+}
+.dofa-threats h3 i { color: #f59e0b; }
+
+
 .service-card strong {
   color: #111111;
 }
@@ -1141,99 +1167,7 @@ body.cart-open .cart-sidebar {
   font-weight: 700;
 }
 
-/* Neobrutalist DOFA Styles */
-.dofa-card {
-  background: #fff;
-  border: 3px solid #000;
-  box-shadow: 8px 8px 0 #000;
-  overflow: hidden;
-  transition: all 0.2s ease;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  display: flex;
-  flex-direction: column;
-}
 
-@media (max-width: 767.98px) {
-  .dofa-card {
-    box-shadow: 3px 3px 0 #000;
-  }
-
-  .dofa-card .head {
-    height: 26px;
-    font-size: 10px;
-    padding: 4px 8px;
-  }
-
-  .dofa-card .content {
-    padding: 0.5rem;
-  }
-
-  .dofa-card ul li {
-    font-size: 1.1rem;
-    font-weight: 800;
-    margin-bottom: 0.4rem;
-    line-height: 1.2;
-  }
-}
-
-.dofa-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 13px 13px 0 #000 !important;
-}
-
-.dofa-card .head {
-  font-size: 14px;
-  font-weight: 900;
-  width: 100%;
-  height: 38px;
-  background: #fff;
-  padding: 8px 16px;
-  color: #000;
-  border-bottom: 3px solid #000;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.dofa-card .content {
-  padding: 1.5rem;
-  flex-grow: 1;
-}
-
-.dofa-card ul li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.8rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #000;
-  list-style: none;
-}
-
-.dofa-card ul li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  font-weight: bold;
-}
-
-.dofa-strengths {
-  background: #4ade80 !important;
-}
-
-.dofa-opportunities {
-  background: #60a5fa !important;
-}
-
-.dofa-weaknesses {
-  background: #fb7185 !important;
-}
-
-.dofa-threats {
-  background: #fbbf24 !important;
-}
 
 .cart-psychologist-select {
   border: 1px solid rgba(42, 105, 200, 0.15);
