@@ -206,8 +206,8 @@ const showCartAlert = (title, message, variant = 'success') => {
         <path d="M16.5 8.31V9a7.5 7.5 0 1 1-4.447-6.855M16.5 3 9 10.508l-2.25-2.25" stroke="${iconColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     <div class="me-3 flex-grow-1">
-        <h3 class="h6 text-dark fw-bold mb-1" style="font-family: 'Poppins', sans-serif;">${title}</h3>
-        <p class="text-secondary small mb-0" style="font-family: 'Poppins', sans-serif; line-height: 1.4;">${message}</p>
+        <h3 class="h6 text-dark fw-bold mb-1">${title}</h3>
+        <p class="text-secondary small mb-0" style="line-height: 1.4;">${message}</p>
     </div>
     <button type="button" aria-label="close" class="ms-auto border-0 bg-transparent p-1 text-secondary opacity-50 hover-opacity-100" onclick="this.closest('.cart-alert').classList.add('animate__fadeOutRight')" style="line-height: 0;">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -291,7 +291,7 @@ const updateCartView = () => {
           <span><i class="fa-regular fa-calendar me-2"></i> ${item.date}</span>
         </div>
         <div class="text-end mt-2">
-          <strong class="fs-5 text-primary">${formatCOP(item.price * item.qty)}</strong>
+          <strong class="fs-5 brand-price">${formatCOP(item.price * item.qty)}</strong>
         </div>
       </li>
     `)
@@ -412,86 +412,6 @@ document.addEventListener('click', (event) => {
     return;
   }
 });
-
-if (checkoutBtn) {
-  checkoutBtn.addEventListener('click', () => {
-  console.log('Checkout clicked. Cart size:', cart.length);
-  if (cart.length === 0) {
-    showCartAlert('Carrito Vacío', 'Agrega al menos un servicio antes de finalizar la compra.', 'warning');
-    return;
-  }
-
-  const selectedPaymentEl = document.querySelector('input[name="payment"]:checked');
-  const selectedPayment = selectedPaymentEl ? selectedPaymentEl.value : 'PSE';
-  console.log('Payment method:', selectedPayment);
-
-  if (selectedPayment === 'Card') {
-    const cardType = document.getElementById('card-type')?.value;
-    const cardNumber = document.getElementById('card-number')?.value.replace(/\s/g, '');
-    const cardExpiry = document.getElementById('card-expiry')?.value;
-    const cardCvv = document.getElementById('card-cvv')?.value;
-    const cardName = document.getElementById('card-name')?.value;
-
-    if (!cardType || !cardNumber || !cardExpiry || !cardCvv || !cardName) {
-      showCartAlert('Faltan datos', 'Por favor completa todos los campos de la tarjeta.', 'warning');
-      return;
-    }
-
-    if (cardNumber.length < 13 || cardNumber.length > 19) {
-      showCartAlert('Número inválido', 'El número de tarjeta debe tener entre 13 y 19 dígitos.', 'warning');
-      return;
-    }
-
-    if (!/^\d{2}\/\d{2}$/.test(cardExpiry)) {
-      showCartAlert('Fecha inválida', 'La fecha de expiración debe tener el formato MM/AA.', 'warning');
-      return;
-    }
-
-    if (cardCvv.length < 3 || cardCvv.length > 4) {
-      showCartAlert('CVV inválido', 'El CVV debe tener 3 o 4 dígitos.', 'warning');
-      return;
-    }
-  }
-
-  const pendingPsychologist = cart.some(item => !item.psychologist);
-  const pendingDate = cart.some(item => !item.date);
-  if (pendingPsychologist || pendingDate) {
-    console.log('Psychologist or date selection pending');
-    showCartAlert('Faltan datos', 'Por favor elige una psicóloga y una fecha para todos los servicios.', 'warning');
-    return;
-  }
-
-  const total = getCartTotal();
-  console.log('Processing checkout for total:', total);
-  showCartAlert('¡Pago Exitoso!', 'Tu cita ha sido agendada. Pronto te contactaremos.', 'success');
-
-  cart.splice(0, cart.length);
-  saveCart();
-
-  paymentInputs.forEach((input) => {
-    if (input.value === 'PSE') input.checked = true;
-  });
-
-  if (cardFieldsEl) cardFieldsEl.classList.add('d-none');
-  document.getElementById('card-type').value = '';
-  document.getElementById('card-number').value = '';
-  document.getElementById('card-expiry').value = '';
-  document.getElementById('card-cvv').value = '';
-  document.getElementById('card-name').value = '';
-
-  if (checkoutSummaryList) checkoutSummaryList.innerHTML = '';
-  if (checkoutTotalValEl) checkoutTotalValEl.textContent = '$0 COP';
-  if (paymentArtifactEl) paymentArtifactEl.innerHTML = '';
-
-  updateCartView();
-  
-  setTimeout(() => {
-    showView(mainView);
-  }, 1500);
-  
-  console.log('Checkout flow complete. Cart size:', cart.length);
-  });
-}
 
 paymentInputs.forEach((input) => {
   input.addEventListener('change', () => {
@@ -757,3 +677,38 @@ document.addEventListener('click', function(e) {
     URL.revokeObjectURL(url);
   }
 });
+
+const initScrollSpy = () => {
+  const sections = document.querySelectorAll('header, section');
+  const navLinks = document.querySelectorAll('.senda-navbar .nav-link');
+  const navbar = document.querySelector('.senda-navbar');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const scrollPos = window.scrollY;
+
+    if (scrollPos > 30) {
+      navbar.classList.add('navbar-scrolled');
+    } else {
+      navbar.classList.remove('navbar-scrolled');
+    }
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      const sectionHeight = section.offsetHeight;
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      const href = link.getAttribute('href');
+      if (href === `#${current}` || (current === 'inicio' && href === '#inicio')) {
+        link.classList.add('active');
+      }
+    });
+  });
+};
+
+initScrollSpy();
